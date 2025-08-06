@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+    <!--    είναι το link ανάμεσα στον κώδικα και στις ρυθμίσεις της βάσης the persistence-unit name-->
+    <persistence-unit name="bookApp"
+                      transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--        hibernate 7 needs explicit entity scanning-->
+        <!--        <class>gr.aueb.cf.model.Author</class>-->
+        <!--        <class>gr.aueb.cf.model.Book</class>-->
+
+        <properties>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.connection.driver" value="com.mysql.cj.jdbc.Driver" />
+            <!--         this one below i change -->
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/bookapppracticedb?serverTimezone=UTC" />
+            <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />-->
+            <!--         this one below i change -->
+            <property name="hibernate.connection.username" value="${DB_USER}" />
+            <!--         this one below i change -->
+            <property name="hibernate.connection.password" value="${DB_PASSWORD}" />
+            <!--         this one below i change  defauly is auto which does nothing, update: updates the tables and keeps the data everytime i run the programme-->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+
+
